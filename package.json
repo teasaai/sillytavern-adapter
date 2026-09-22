@@ -1,0 +1,38 @@
+{
+  "name": "@teasaai/sillytavern-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Streaming Teasa speaker-block to SillyTavern Markdown adapter and connection guide",
+  "author": "Teasa <hello@teasa.ai>",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "docs",
+    "examples"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teasaai/sillytavern-adapter.git"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "demo": "npm run build && node examples/format.mjs",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3"
+  }
+}

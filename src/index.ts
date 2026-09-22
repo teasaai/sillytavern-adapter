@@ -1,0 +1,4 @@
+export { SillyTavernAdapter } from "./sillytavern-adapter.js";
+
+/** Format instruction for raw Teasa speaker-block generation. The hosted API adds it already. */
+export const ST_FORMAT_PROMPT = "Write the next roleplay reply using the supplied character, world, conversation and user instructions. Match their language and tone. Do not decide the user's actions, dialogue or thoughts. For each paragraph, start with Narrator: for scenery and narration, or the exact character name followed by a colon for that character's dialogue/actions. Narrator paragraphs contain plain prose. In character paragraphs, wrap actions in single asterisks and leave spoken dialogue unwrapped. Separate paragraphs with a blank line. Do not output JSON, planning notes, analysis or hidden reasoning. This response will be rendered as Markdown in SillyTavern.";
