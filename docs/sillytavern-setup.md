@@ -1,5 +1,11 @@
 # SillyTavern setup
 
+## Install SillyTavern, not an extra adapter
+
+If you already use SillyTavern, skip straight to the connection settings below. Otherwise, follow the [official installation instructions](https://docs.sillytavern.app/installation/) for your operating system and launch SillyTavern.
+
+Teasa applies its formatting adapter on the hosted API. You do not need to clone this repository, run npm, install a proxy, or add an extension. Do not paste this repository URL into **Extensions → Install extension**. Developers integrating raw model output can use the [standalone formatter](../README.md#for-developers-standalone-formatter).
+
 ## Get a key
 
 Sign in to [Teasa](https://teasa.ai) and open **Account → Use Teasa in SillyTavern**. Create a key with a name you will recognize. The secret is shown once. Keep it private; do not paste it into a character card, prompt, screenshot or issue.
@@ -16,14 +22,35 @@ Chai was previously called Teasa. Existing API keys remain valid with the same b
 
 ## Configure your connection
 
-1. Open **API Connections** in SillyTavern.
-2. Set the API type to **Chat Completion**.
-3. Set the source to **Custom (OpenAI-compatible)**.
-4. Set the server URL to `https://teasa.ai/model-api/v1`.
-5. Paste your key into the Custom API key field and connect.
-6. Select `chai` from the model list, or enter that exact model ID manually.
-7. Set context size to **32,256** and response length to **1,500** initially. Streaming is optional.
-8. Choose a character and send a short greeting to test the connection. A test message consumes a small amount of credit.
+1. Open **API Connections** with the **plug icon** in SillyTavern’s top toolbar.
+2. Set **API** to **Chat Completion**.
+3. Set **Chat Completion Source** to **Custom (OpenAI-compatible)**.
+4. Set **Custom Endpoint (Base URL)** to `https://teasa.ai/model-api/v1`. Do not append `/chat/completions`.
+5. Paste your key into **Custom API Key**. Teasa requires a key even though SillyTavern labels this generic field “Optional.”
+6. Set **Enter a Model ID** to `chai`. Leave **Prompt Post-Processing** on **None** and click **Connect**. You can also select `chai` from **Available Models** after connecting.
+
+![API Connections filled in for Teasa, before connecting](images/sillytavern-connection.png)
+
+`YOUR_TEASA_API_KEY` is a placeholder, not a working key. This screenshot shows the form before connecting; it is not a successful connection receipt.
+
+## Configure context and streaming
+
+Open **AI Response Configuration** with the **sliders icon** in the top toolbar.
+
+| Field | Starting value |
+| --- | --- |
+| Context Size (tokens) | `32256` |
+| Max Response Length (tokens) | `1500` |
+| Multiple swipes per generation | `1` |
+| Streaming | Enabled |
+
+If the context control will not accept `32256`, enable **Unlocked Context Size**, then click the number beside the slider and type the value. Unlocking the control does not increase the model’s actual context window.
+
+![Response configuration with the recommended context, reply budget, and streaming settings](images/sillytavern-generation-settings.png)
+
+Captured in SillyTavern 1.19.0. Your theme or version may place the controls differently. Other sampling settings shown are defaults, not required Teasa settings.
+
+Choose a character and send a short greeting, or use **Test Message** in API Connections. A test message consumes a small amount of credit. A successful reply confirms the connection; a generic status such as “Status check bypassed” on a Custom endpoint does not by itself verify your key.
 
 Keep tool calling, image attachments and JSON/structured-output modes disabled. The API accepts text messages with `system`, `user` and `assistant` roles. It supports temperature, top-p, frequency/presence penalties and up to four stop sequences. It does not offer legacy Text Completion or multiple candidates per request.
 

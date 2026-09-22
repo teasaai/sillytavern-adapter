@@ -11,28 +11,44 @@ Use [Chai by Teasa](https://teasa.ai) with your characters and conversations in 
 
 **This experiment is Chai-only.** Trial keys cannot access Matcha. Chai is the new name for the default model previously called Teasa. Existing keys keep their remaining credit; there is no need to replace them.
 
+## Do I need to install the adapter?
+
+**No.** When you connect to Teasa’s hosted API, the adapter runs automatically on our server, including during streaming. SillyTavern receives ready-to-render Markdown: italic narration, bold character names, and action/dialogue formatting. No extension or local proxy is needed.
+
+If you do not have SillyTavern yet, follow its [official installation guide](https://docs.sillytavern.app/installation/) for your operating system, then return here. This repository is not a SillyTavern extension; do not install its URL through the Extensions panel. The optional [standalone formatter](#for-developers-standalone-formatter) is for developers working with raw model output.
+
 ## Connect in SillyTavern
 
 1. Sign in at [teasa.ai](https://teasa.ai). Open **Account → Use Teasa in SillyTavern**, create a named API key and save it. If Teasa gave you a trial key, use that key directly.
-2. In SillyTavern, open **API Connections**. Choose **Chat Completion**, then **Custom (OpenAI-compatible)**.
+2. In SillyTavern, open **API Connections** using the plug icon in the top toolbar. Choose **Chat Completion**, then **Custom (OpenAI-compatible)**.
 3. Enter these settings and connect:
 
 | Setting | Value |
 | --- | --- |
-| Server URL | `https://teasa.ai/model-api/v1` |
+| Custom Endpoint (Base URL) | `https://teasa.ai/model-api/v1` |
 | Custom API key | Your Teasa API key |
-| Model | `chai` |
+| Enter a Model ID | `chai` |
 | Context size | `32256` tokens, including the reply |
 | Response length | Start with `1500` tokens |
 | Streaming | Supported |
 
-4. Select a character and send a message. You can also import a Character Card V2 PNG or JSON exported from Teasa’s web Creator Studio.
+The screenshot shows the fields **before clicking Connect**. Replace `YOUR_TEASA_API_KEY` with your own key. SillyTavern calls the field “Optional,” but Teasa requires it. Leave **Prompt Post-Processing** set to **None**.
+
+![SillyTavern API Connections with the Teasa base URL, a placeholder API key, and chai as the model ID](docs/images/sillytavern-connection.png)
+
+4. Open **AI Response Configuration** using the sliders icon in the top toolbar. Set **Context Size** to `32256`, **Max Response Length** to `1500`, and **Multiple swipes per generation** to `1`. Enable **Unlocked Context Size** if needed to enter that context value. Enable **Streaming** for replies to appear as they are generated.
+
+![SillyTavern response settings showing 32256 context tokens, 1500 reply tokens, one swipe, and streaming enabled](docs/images/sillytavern-generation-settings.png)
+
+These setup screenshots use SillyTavern 1.19.0. Field placement can vary by version and theme.
+
+5. Select a character and send a message. You can also import a Character Card V2 PNG or JSON exported from Teasa’s web Creator Studio.
 
 Use the base URL above without adding `/chat/completions`. Leave tool calling, image input and structured JSON output off. [Full setup, credit details and troubleshooting](docs/sillytavern-setup.md).
 
 If you previously selected `teasa-roleplay`, reconnect and choose `chai`. The old ID remains an alias for Chai; it does not unlock another model.
 
-**No extension or local proxy is needed.** Teasa’s hosted endpoint already converts its replies to SillyTavern Markdown. Do not apply the adapter again to hosted API replies.
+Do not apply the adapter again to hosted API replies.
 
 ## See it in SillyTavern
 
@@ -42,7 +58,7 @@ A live reply from the model now named Chai in SillyTavern 1.19.0 using its stand
 
 [View the mobile-width screenshot](docs/images/sillytavern-mobile.png). Captured on 22 September 2026 from a real streamed reply through the previous `teasa-roleplay` model ID (now `chai`); the sample conversation is synthetic. Your theme and formatting extensions can change its appearance.
 
-## Standalone adapter
+## For developers: standalone formatter
 
 This repository also contains the streaming formatter used by Teasa. It converts raw speaker blocks into one Markdown assistant message: narrator paragraphs become emphasis, character names become bold, and character actions keep their Markdown. SillyTavern renders the resulting text.
 
@@ -56,7 +72,7 @@ npm test
 npm run demo
 ```
 
-Requires Node.js 20 or later. The build emits JavaScript and TypeScript declarations in `dist/`.
+These installation commands are only for the standalone developer formatter. It is not published as an npm registry package. Requires Node.js 20 or later. The build emits JavaScript and TypeScript declarations in `dist/`.
 
 ```js
 import { SillyTavernAdapter } from './dist/index.js';
