@@ -1,6 +1,6 @@
 # Teasa for SillyTavern
 
-Use Teasa’s roleplay model with your characters and conversations in SillyTavern. Start with a one-time **$1 trial per eligible Teasa account**. No card charges or automatic top-ups.
+Use [Teasa’s roleplay model](https://teasa.ai) with your characters and conversations in SillyTavern. Start with a one-time **$1 trial per eligible Teasa account**. No card charges or automatic top-ups.
 
 ## Connect in SillyTavern
 
@@ -22,6 +22,14 @@ Use Teasa’s roleplay model with your characters and conversations in SillyTave
 Use the base URL above without adding `/chat/completions`. Leave tool calling, image input and structured JSON output off. [Full setup, credit details and troubleshooting](docs/sillytavern-setup.md).
 
 **No extension or local proxy is needed.** Teasa’s hosted endpoint already converts its replies to SillyTavern Markdown. Do not apply the adapter again to hosted API replies.
+
+## See it in SillyTavern
+
+A live Teasa reply in SillyTavern 1.19.0 using its standard chat display. The example uses a fictional cartographer, Mira Vale: actions appear in italics, dialogue stays upright, and the character header shows who is speaking.
+
+![A conversation with Mira Vale in SillyTavern, generated through the Teasa API](docs/images/sillytavern-desktop.png)
+
+[View the mobile-width screenshot](docs/images/sillytavern-mobile.png). Captured on 22 September 2026 from a real streamed reply through `teasa-roleplay`; the sample conversation is synthetic. Your theme and formatting extensions can change its appearance.
 
 ## Standalone adapter
 
