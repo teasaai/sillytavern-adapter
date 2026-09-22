@@ -6,7 +6,7 @@ const response = await fetch('https://teasa.ai/model-api/v1/chat/completions', {
   method: 'POST',
   headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
   body: JSON.stringify({
-    model: 'teasa-roleplay',
+    model: 'chai',
     messages: [
       { role: 'system', content: 'You are Mira, an adult cartographer. Reply in English.' },
       { role: 'user', content: 'Hello, Mira. Is the map ready?' },

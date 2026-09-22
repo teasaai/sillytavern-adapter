@@ -6,6 +6,14 @@ Sign in to [Teasa](https://teasa.ai) and open **Account → Use Teasa in SillyTa
 
 The first eligible activation grants a one-time $1 promotional balance per account. Activation is subject to availability and abuse limits. Extra or replacement keys share the same account balance and do not reset it. If you received a key from Teasa, it is ready to use without creating another account.
 
+## Models in this experiment
+
+**Chai:** Warm and light conversations with a touch of spice. Select `chai` as the API model ID.
+
+**Matcha:** Deep and rich conversations with a touch of bittersweet. Matcha is not included in this experiment. Trial keys are restricted to Chai, and requesting Matcha is rejected before inference or credit usage.
+
+Chai was previously called Teasa. Existing API keys remain valid with the same balance. For older client configurations, `teasa-roleplay` remains a compatibility alias for Chai. Model discovery lists only `chai`.
+
 ## Configure your connection
 
 1. Open **API Connections** in SillyTavern.
@@ -13,7 +21,7 @@ The first eligible activation grants a one-time $1 promotional balance per accou
 3. Set the source to **Custom (OpenAI-compatible)**.
 4. Set the server URL to `https://teasa.ai/model-api/v1`.
 5. Paste your key into the Custom API key field and connect.
-6. Select `teasa-roleplay` from the model list, or enter that exact model ID manually.
+6. Select `chai` from the model list, or enter that exact model ID manually.
 7. Set context size to **32,256** and response length to **1,500** initially. Streaming is optional.
 8. Choose a character and send a short greeting to test the connection. A test message consumes a small amount of credit.
 
@@ -45,7 +53,7 @@ Prompts and replies are processed by Teasa and its inference provider. API conve
 | --- | --- |
 | Cannot connect | Use Chat Completion and the exact base URL. Do not append `/chat/completions`. |
 | Unauthorized | Use a model API key, not your password or a browser session. Check that the key is still active. |
-| Model not listed | Reconnect, or enter `teasa-roleplay` manually. |
+| Model not listed | Reconnect, or enter `chai` manually. Matcha is not available in this trial. |
 | Context length error | Lower context or reply length; remove unusually large required prompts. |
 | Unsupported request | Disable tool calls, images, JSON output and multiple candidates. |
 | HTTP 429 | Check the error: wait for an active request/rate limit, or inspect remaining credit for `insufficient_quota`. |
